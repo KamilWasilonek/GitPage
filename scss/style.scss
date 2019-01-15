@@ -1,0 +1,298 @@
+@import 'config';
+@import 'menu';
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include background(-300px);
+    @include cssLock(12);
+    background: $primary-color;
+    color: white;
+    margin: 0;
+    height: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    @include respond-to(mediaSm) {
+        @include background();
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 400;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    min-height: calc(100vh - 30px);
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    padding-top: 10vh;
+    @include respond-to(mediaSm) {
+        width: 85%;
+    }
+    @include respond-to(mediaXl) {
+        width: 75%;
+    }
+}
+
+.home {
+    overflow: hidden;
+    padding-top: 20vh;
+    .lg-heading {
+        @include lgHeading;
+    }
+    .sm-heading {
+        text-align: center;
+        padding: 32px 16px;
+    }
+    .icons {
+        @include cssLock(45, 65, 300, 1200);
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 15px;
+        i {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            &:hover {
+                @include ease-out(1.5);
+                color: $secondary-color;
+            }
+        }
+    }
+    @include respond-to(mediaXl) {
+        i {
+            &:nth-child(1) {
+                justify-content: flex-end;
+            }
+            &:nth-child(3) {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+/* ABOUT */
+
+.about {
+    .lg-heading {
+        @include lgHeading;
+        @include respond-to(mediaMd) {
+            text-align: left;
+        }
+    }
+    .sm-heading {
+        text-align: center;
+        margin-bottom: 30px;
+        @include respond-to(mediaMd) {
+            text-align: left;
+        }
+    }
+    .about-info {
+        display: grid;
+        grid-template-areas: 'portrait' 'text' 'text' 'offer-1' 'offer-2' 'offer-3';
+        grid-template-columns: 1fr;
+        grid-gap: 30px;
+        grid-template-rows: auto;
+        @include respond-to(mediaMd) {
+            grid-template-areas: 'portrait text text' 'offer-1 offer-2 offer-3';
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            grid-row-gap: 60px;
+        }
+        .portrait {
+            grid-area: portrait;
+            margin: auto;
+            border-radius: 50%;
+            border: $secondary-color solid 2px;
+            @include cssLock(150, 200, 300, 1000, width);
+            @include cssLock(150, 200, 300, 1000, height);
+            @include respond-to(mediaMd) {
+                margin: 0;
+            }
+        }
+        .text {
+            text-align: center;
+            grid-area: text;
+            @include cssLock(15, 20);
+            .title {
+                color: $secondary-color;
+                margin-bottom: 10px;
+            }
+            @include respond-to(mediaMd) {
+                text-align: left;
+            }
+        }
+        .offer-1 {
+            grid-area: 'offer-1';
+        }
+        .offer-2 {
+            grid-area: 'offer-2';
+        }
+        .offer-3 {
+            grid-area: 'offer-3';
+        }
+        .offer-1,
+        .offer-2,
+        .offer-3 {
+            width: 80%;
+            margin: auto;
+            background: lighten($color: $primary-color, $amount: 5);
+            padding: 10px;
+            border-bottom: $secondary-color solid 5px;
+            .city {
+                margin: 10px 0;
+            }
+            @include respond-to(mediaMd) {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/* WORK */
+
+.work {
+    .lg-heading {
+        @include lgHeading;
+    }
+    .sm-heading {
+        text-align: center;
+    }
+    .projects {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: space-between;
+        grid-row-gap: 30px;
+        @media (min-width: 500px) {
+            width: 100%;
+            margin: 50px 0 0 0;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 15px;
+        }
+        @include respond-to(mediaLg) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include respond-to(mediaXl) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .project {
+            display: grid;
+            grid-row-gap: 8px;
+            grid-template-columns: 1fr;
+            img {
+                width: 100%;
+                border: 2px solid white;
+                @include ease-out(0.5);
+                &:hover {
+                    opacity: 0.5;
+                    border-color: $secondary-color;
+                    @include ease-out(0.5);
+                }
+            }
+            .btn {
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+                min-height: 40px;
+                i {
+                    margin: 0 10px;
+                }
+                @include ease-out(0.5);
+                &:hover {
+                    background: $secondary-color;
+                    @include ease-out(0.5);
+                }
+            }
+            .btn-live {
+                a {
+                    @extend .btn;
+                    background: #c0c5ce;
+                    color: black;
+                    &:hover {
+                        color: black;
+                    }
+                }
+            }
+            .btn-github {
+                a {
+                    @extend .btn;
+                    background: black;
+                    color: white;
+                    &:hover {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* CONTACT */
+
+.contact {
+    .lg-heading {
+        @include lgHeading();
+    }
+    .sm-heading {
+        text-align: center;
+    }
+    .boxes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin-top: 20px;
+        .box {
+            @include cssLock(20, 24);
+            border: 2px solid white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            @include ease-out(0.5);
+            .text-secondary {
+                color: $secondary-color;
+            }
+            &:hover {
+                @include ease-out(0.5);
+                background: $secondary-color;
+                color: black;
+                padding: 10px;
+                span{
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 5px;
+    height: 30px;
+    background: darken($color: $primary-color, $amount: 4);
+    text-align: center;
+}
