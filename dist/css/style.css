@@ -376,7 +376,7 @@ main {
       transition: all 0.5s ease-out;
       background: #FFD20D;
       color: black;
-      padding: 10px; }
+      padding-bottom: 10px; }
       .contact .boxes .box:hover span {
         color: black; }
 
